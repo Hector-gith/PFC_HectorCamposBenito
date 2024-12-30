@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define a custom text appearance for the TabLayout -->
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item> <!-- Adjust the text size here -->
+        <item name="android:textColor">@android:color/white</item> <!-- Optional: change text color -->
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    </style>
+</resources>
