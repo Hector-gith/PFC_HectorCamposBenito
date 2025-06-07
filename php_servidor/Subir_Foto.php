@@ -2,9 +2,9 @@
 header('Content-Type: application/json');
 
 $servername = "localhost";
-$username = "u178650151_root";
+$username = "u931748780_root";
 $password = "Telacatola1459.";
-$dbname = "u178650151_bddmeal";
+$dbname = "u931748780_bddmeal";
 
 try {
     // Crear conexión PDO
@@ -19,7 +19,11 @@ try {
             $ID = $_POST['ID'];
             $foto = $_POST['foto'];
             $descripcion = $_POST['descripcion'];
-
+            $ingredientes = $_POST['ingredientes'];
+            $preparacion = $_POST['preparacion'];
+            $restaurante = $_POST['restaurante'];
+            $latitud = $_POST['latitud'];
+            $longitud = $_POST['longitud'];
 
 
             $sql = "SELECT ID FROM fotos WHERE ID_U = :ID";         
@@ -30,6 +34,16 @@ try {
             if($stmt_check->rowCount()==1){
                 $registro=$stmt_check->fetch(PDO::FETCH_ASSOC);
                 $sql = "DELETE FROM comentarios WHERE ID_F = :ID";         
+                $stmt_check = $conn->prepare($sql);
+                $stmt_check->bindParam(':ID', $registro["ID"]);
+                $stmt_check->execute();
+
+                $sql = "DELETE FROM recetas WHERE ID_F = :ID";         
+                $stmt_check = $conn->prepare($sql);
+                $stmt_check->bindParam(':ID', $registro["ID"]);
+                $stmt_check->execute();
+
+                $sql = "DELETE FROM ubicacion WHERE ID_F = :ID";         
                 $stmt_check = $conn->prepare($sql);
                 $stmt_check->bindParam(':ID', $registro["ID"]);
                 $stmt_check->execute();
@@ -55,7 +69,37 @@ try {
                 echo json_encode(array("status" => "error", "message" => "Error, foto no guardada"));
 
             }else{
-                echo json_encode(array("status" => "success", "message" => "Foto guardada correctamente".$timestamp_actual));
+                $sql = "SELECT ID FROM fotos WHERE ID_U = :ID";         
+                $stmt_check = $conn->prepare($sql);
+                $stmt_check->bindParam(':ID', $ID);
+                $stmt_check->execute();
+
+                if($stmt_check->rowCount()==1){
+                     $registro=$stmt_check->fetch(PDO::FETCH_ASSOC);
+                    if($latitud==0){
+                        $sql_registro = "INSERT INTO recetas (ID_F, INGREDIENTES, PREPARACION) VALUES (:id_f, :ingredientes, :preparacion)";
+                        $stmt = $conn->prepare($sql_registro);
+                        $stmt->bindParam(':id_f', $registro["ID"]);
+                        $stmt->bindParam(':ingredientes', $ingredientes);
+                        $stmt->bindParam(':preparacion', $preparacion);
+                        $stmt->execute();
+                    }else{
+
+                        $sql_registro = "INSERT INTO ubicacion (ID_F, RESTAURANTE, LATITUD, LONGITUD) VALUES (:id_f, :restaurante, :latitud, :longitud)";
+                        $stmt = $conn->prepare($sql_registro);
+                        $stmt->bindParam(':id_f', $registro["ID"]);
+                        $stmt->bindParam(':restaurante', $restaurante);
+                        $stmt->bindParam(':latitud', $latitud);
+                        $stmt->bindParam(':longitud', $longitud);
+                        $stmt->execute();
+                    }
+                   
+                    echo json_encode(array("status" => "success", "message" => "Foto guardada correctamente"));
+                
+                }
+
+                  
+               
 
             }
 

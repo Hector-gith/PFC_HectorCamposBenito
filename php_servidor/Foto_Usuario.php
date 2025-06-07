@@ -2,9 +2,9 @@
 header('Content-Type: application/json');
 
 $servername = "localhost";
-$username = "u178650151_root";
+$username = "u931748780_root";
 $password = "Telacatola1459.";
-$dbname = "u178650151_bddmeal";
+$dbname = "u931748780_bddmeal";
 
 try {
     // Crear conexión PDO
@@ -30,6 +30,16 @@ try {
                 $stmt_check = $conn->prepare($sql);
                 $stmt_check->bindParam(':ID', $registro["ID"]);
                 $stmt_check->execute();
+
+                $sql = "DELETE FROM recetas WHERE ID_F = :ID";         
+                $stmt_check = $conn->prepare($sql);
+                $stmt_check->bindParam(':ID', $registro["ID"]);
+                $stmt_check->execute();
+
+                $sql = "DELETE FROM ubicacion WHERE ID_F = :ID";         
+                $stmt_check = $conn->prepare($sql);
+                $stmt_check->bindParam(':ID', $registro["ID"]);
+                $stmt_check->execute();
     
                 $sql = "DELETE FROM fotos WHERE ID = :ID";         
                 $stmt_check = $conn->prepare($sql);
@@ -44,7 +54,7 @@ try {
     
                 }                
             }else{
-                echo json_encode(array("status" => "error", "message" => "No se pudo eliminar, intentelo de nuevo".$ID));
+                echo json_encode(array("status" => "error", "message" => "No se pudo eliminar, intentelo de nuevo"));
 
             }
 

@@ -2,9 +2,9 @@
 header('Content-Type: application/json');
 
 $servername = "localhost";
-$username = "u178650151_root";
+$username = "u931748780_root";
 $password = "Telacatola1459.";
-$dbname = "u178650151_bddmeal";
+$dbname = "u931748780_bddmeal";
 
 try {
     // Crear conexión PDO
@@ -38,23 +38,69 @@ try {
                 $fechaFoto = date('Y-m-d', strtotime($registro["FECHA"]));
 
                     if($fechaFoto==$fechaHoy){
+
                         $sql = "SELECT COUNT(*) FROM comentarios WHERE ID_F = :id_f";
                         $stmt_check1 = $conn->prepare($sql);
                         $stmt_check1->bindParam(':id_f', $registro["ID"]);
                         $stmt_check1->execute();
                         $cuenta = $stmt_check1->fetchColumn();
                         $horafoto = date('H:i', strtotime($registro["FECHA"]));
+                        
+                        $sql = "SELECT * FROM ubicacion WHERE ID_F = :id_f";         
+                        $stmt_check = $conn->prepare($sql);
+                        $stmt_check->bindParam(':id_f', $registro["ID"]);
+                        $stmt_check->execute();
 
-                        $foto = array(
+                        if($stmt_check->rowCount()==1){
+                            $registro1=$stmt_check->fetch(PDO::FETCH_ASSOC);
+                            
+                            $restaurante = $registro1['RESTAURANTE'];
+                            $latitud = $registro1['LATITUD'];
+                            $longitud = $registro1['LONGITUD'];
+                            
+                            $foto = array(
                             'ID' => $registro['ID'],
                             'NICK' => "TÚ",
                             'FOTO_PERFIL'=>"1",
                             'FOTO' => $registro['FOTO'],
                             'DESCRIPCION' => $registro['DESCRIPCION'],
                             'FECHA' => $horafoto,
-                            'COMENTARIOS' => $cuenta
+                            'COMENTARIOS' => $cuenta,
+                            'RESTAURANTE' => $restaurante,
+                            'LATITUD' => $latitud,
+                            'LONGITUD' => $longitud
+                        
 
-                        );
+                            );
+
+                        }else{
+
+                            $sql = "SELECT * FROM recetas WHERE ID_F = :id_f";         
+                            $stmt_check = $conn->prepare($sql);
+                            $stmt_check->bindParam(':id_f', $registro["ID"]);
+                            $stmt_check->execute();
+                            $registro1=$stmt_check->fetch(PDO::FETCH_ASSOC);
+
+                            $ingredientes = $registro1['INGREDIENTES'];
+                            $preparacion = $registro1['PREPARACION'];
+                            
+                            $foto = array(
+                            'ID' => $registro['ID'],
+                            'NICK' => "TÚ",
+                            'FOTO_PERFIL'=>"1",
+                            'FOTO' => $registro['FOTO'],
+                            'DESCRIPCION' => $registro['DESCRIPCION'],
+                            'FECHA' => $horafoto,
+                            'COMENTARIOS' => $cuenta,
+                            'INGREDIENTES' => $ingredientes,
+                            'PREPARACION' => $preparacion
+
+
+                            );
+                        }
+                        
+
+                        
                         $fotos[] = $foto;
                     }
                 
@@ -101,16 +147,59 @@ try {
                                 $cuenta = $stmt_check3->fetchColumn();
                                 $horafoto = date('H:i', strtotime($registro2["FECHA"]));
 
-                                $foto = array(
+                                $sql = "SELECT * FROM ubicacion WHERE ID_F = :id_f";         
+                                $stmt_check4 = $conn->prepare($sql);
+                                $stmt_check4->bindParam(':id_f', $registro2["ID"]);
+                                $stmt_check4->execute();
+
+                                if($stmt_check4->rowCount()==1){
+                                    $registro3=$stmt_check4->fetch(PDO::FETCH_ASSOC);
+                                    
+                                    $restaurante = $registro3['RESTAURANTE'];
+                                    $latitud = $registro3['LATITUD'];
+                                    $longitud = $registro3['LONGITUD'];
+                                    
+                                    $foto = array(
                                     'ID' => $registro2['ID'],
                                     'NICK' => $registro['NICK'],
                                     'FOTO_PERFIL'=>$registro['FOTO_PERFIL'],
                                     'FOTO' => $registro2['FOTO'],
                                     'DESCRIPCION' => $registro2['DESCRIPCION'],
                                     'FECHA' => $horafoto,
-                                    'COMENTARIOS' => $cuenta
+                                    'COMENTARIOS' => $cuenta,
+                                    'RESTAURANTE' => $restaurante,
+                                    'LATITUD' => $latitud,
+                                    'LONGITUD' => $longitud
+                                
 
-                                );
+                                    );
+
+                                }else{
+
+                                    $sql = "SELECT * FROM recetas WHERE ID_F = :id_f";         
+                                    $stmt_check4 = $conn->prepare($sql);
+                                    $stmt_check4->bindParam(':id_f', $registro2["ID"]);
+                                    $stmt_check4->execute();
+                                    $registro3=$stmt_check4->fetch(PDO::FETCH_ASSOC);
+
+                                    $ingredientes = $registro3['INGREDIENTES'];
+                                    $preparacion = $registro3['PREPARACION'];
+                                    
+                                    $foto = array(
+                                    'ID' => $registro2['ID'],
+                                    'NICK' => $registro['NICK'],
+                                    'FOTO_PERFIL'=>$registro['FOTO_PERFIL'],
+                                    'FOTO' => $registro2['FOTO'],
+                                    'DESCRIPCION' => $registro2['DESCRIPCION'],
+                                    'FECHA' => $horafoto,
+                                    'COMENTARIOS' => $cuenta,
+                                    'INGREDIENTES' => $ingredientes,
+                                    'PREPARACION' => $preparacion
+
+
+                                    );
+                                }
+                                
                                 $fotos[] = $foto;
                             }
                     }
