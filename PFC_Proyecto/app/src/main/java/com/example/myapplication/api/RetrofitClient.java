@@ -9,7 +9,7 @@ public class RetrofitClient {
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://darkgoldenrod-spider-533346.hostingersite.com/")
+                    .baseUrl("https://dmeal.site/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

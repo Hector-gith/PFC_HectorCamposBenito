@@ -47,7 +47,7 @@ import retrofit2.Retrofit;
 public class SubirFoto extends Fragment {
 
     private String foto;
-    private Button btn_subir;
+    private Button btn_receta;
     private ImageView img_foto;
     private EditText descripcion;
     private SubirFotoControlador subirFotoControlador;
@@ -66,6 +66,10 @@ public class SubirFoto extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             foto = getArguments().getString("clave");
+                  
+            Bundle bundle = new Bundle();
+            bundle.putString("clave",null);
+            setArguments(bundle);
         }
 
     }
@@ -81,7 +85,8 @@ public class SubirFoto extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         img_foto = view.findViewById(R.id.IMG_foto);
         descripcion = view.findViewById(R.id.ED_descripcion);
-        btn_subir = view.findViewById(R.id.BTN_subir);
+
+        btn_receta = view.findViewById(R.id.BTN_receta);
         BDsqlite dbHelper = new BDsqlite(getActivity());
 
 
@@ -90,27 +95,22 @@ public class SubirFoto extends Fragment {
         Bitmap bitmap = base64ToBitmap(foto);
 
         img_foto.setImageBitmap(bitmap);
-        btn_subir.setOnClickListener(new View.OnClickListener() {
+
+        btn_receta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("Subir foto")
-                        .setMessage("¿Estás seguro que deseas subir esta foto?")
-                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                SubirFotos(dbHelper.getUsuarioID(), foto, descripcion.getText().toString());
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                transaction.replace(R.id.AplicacionFrame, new PagInicio());
-                                transaction.addToBackStack(null);
-                                transaction.commit();
-                            }
-                        })
-                        .show();
+
+                CrearReceta crearReceta = new CrearReceta();
+                Bundle bundle = new Bundle();
+                bundle.putString("foto",foto);
+                bundle.putString("descripcion",descripcion.getText().toString());
+
+                crearReceta.setArguments(bundle);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.AplicacionFrame, crearReceta);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -121,51 +121,5 @@ public class SubirFoto extends Fragment {
         byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
-    private void SubirFotos(int ID, String foto, String descripcion) {
-        Call<ResponseBody> call = subirFotoControlador.postFoto(ID, foto, descripcion);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    try {
-                        String responseBody = response.body().string();
-                        JSONObject responseJson = new JSONObject(responseBody);
-                        String status = responseJson.getString("status");
-                        String message = responseJson.getString("message");
 
-                        if (status.equals("success")) {
-                            Log.d("API_RESPONSE", message);
-                            BDsqlite dbHelper = new BDsqlite(getActivity());
-                            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.AplicacionFrame, new PagInicio());
-                            transaction.addToBackStack(null);
-                            transaction.commit();
-
-                        } else {
-                            Log.d("API_RESPONSE", message);
-                            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(), "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    try {
-                        String errorMessage = response.errorBody().string();
-                        JSONObject errorJson = new JSONObject(errorMessage);
-                        String message = errorJson.getString("message");
-                        Toast.makeText(getActivity(), "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "El servidor no responde, espere...", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

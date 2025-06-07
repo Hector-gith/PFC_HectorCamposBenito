@@ -1,10 +1,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constrainlayout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="700dp">
 
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/MP_Ubicacion"
+        android:layout_width="64dp"
+        android:layout_height="61dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/IMG_FotoPerfilFoto"
@@ -51,15 +65,31 @@
 
     <TextView
         android:id="@+id/TV_DescripcionFoto"
-        android:layout_width="337dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="start"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.819" />
+
+    <TextView
+        android:id="@+id/TV_NombreRestaurante"
+        android:layout_width="172dp"
+        android:layout_height="19dp"
+        android:gravity="end"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
 
     <TextView
         android:id="@+id/TV_FechaFoto"
@@ -69,21 +99,37 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <Button
         android:id="@+id/BTN_VerComentarios"
-        android:layout_width="293dp"
+        android:layout_width="160dp"
         android:layout_height="48dp"
-        android:text="Ver los n comentarios"
         android:backgroundTint="@color/verde"
+        android:text="comentarios"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.952"
+
+        />
+
+    <Button
+        android:id="@+id/BTN_VerReceta"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/verde"
+        android:text="Ver receta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.952" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

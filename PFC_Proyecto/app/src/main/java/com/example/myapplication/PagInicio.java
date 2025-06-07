@@ -71,7 +71,6 @@ public class PagInicio extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -103,6 +102,8 @@ public class PagInicio extends Fragment {
 
 
         nick.setText(dbHelper.getUsuarioNick());
+
+        btn_tomarFoto.setEnabled(false);
         FotoUsuario(dbHelper.getUsuarioID());
 
 
@@ -208,18 +209,19 @@ public class PagInicio extends Fragment {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, 600, 800, true);;
-
                 fotoB64 = convertirBitmapABase64(resizedBitmap);
 
-                SubirFoto subirFoto = new SubirFoto();
-                Bundle bundle = new Bundle();
-                bundle.putString("clave",fotoB64);
-                subirFoto.setArguments(bundle);
+                    SubirFoto subirFoto = new SubirFoto();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("clave",fotoB64);
+                    subirFoto.setArguments(bundle);
 
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.AplicacionFrame, subirFoto);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.AplicacionFrame, subirFoto);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
+
             }
         }
     }
@@ -252,15 +254,17 @@ public class PagInicio extends Fragment {
                         btn_tomarFoto.setBackground(null);
                         btn_eliminarFoto.setEnabled(true);
                         btn_eliminarFoto.setVisibility(View.VISIBLE);
+                    }else{
+                        btn_tomarFoto.setEnabled(true);
                     }
+
 
                 } else {
                 }
             }
-
-
             @Override
             public void onFailure(Call<Fotos> call, Throwable t) {
+                btn_tomarFoto.setEnabled(true);
                 t.printStackTrace();
             }
         });
@@ -272,6 +276,7 @@ public class PagInicio extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
+                        btn_tomarFoto.setEnabled(true);
                         String responseBody = response.body().string();
                         JSONObject responseJson = new JSONObject(responseBody);
                         String status = responseJson.getString("status");

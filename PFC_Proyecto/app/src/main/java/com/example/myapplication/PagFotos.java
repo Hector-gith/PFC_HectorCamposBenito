@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ import com.example.myapplication.modelos.Fotos;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.blurry.Blurry;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ import retrofit2.Retrofit;
 public class PagFotos extends Fragment {
     private RecyclerView recyclerView;
     private FotosAdapter adapter;
+
     private List<Fotos> fotosList;
     private FotosControlador fotosControlador;
 
@@ -61,6 +64,7 @@ public class PagFotos extends Fragment {
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         recyclerView = view.findViewById(R.id.recyclerViewFotos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -81,6 +85,8 @@ public class PagFotos extends Fragment {
                     fotosList = response.body();
                     if(fotosList.isEmpty()||!fotosList.get(0).getNICK().equals("TÚ")){
                         Toast.makeText(getActivity(), "sube una foto si quieres ver las de los demás", Toast.LENGTH_SHORT).show();
+                        adapter = new FotosAdapter(getContext(), fotosList);
+                        recyclerView.setAdapter(adapter);
 
                     }else{
                         adapter = new FotosAdapter(getContext(), fotosList);

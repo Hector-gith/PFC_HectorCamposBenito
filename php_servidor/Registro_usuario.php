@@ -3,9 +3,9 @@
 header('Content-Type: application/json');
 
 $servername = "localhost";
-$username = "u178650151_root";
+$username = "u931748780_root";
 $password = "Telacatola1459.";
-$dbname = "u178650151_bddmeal";
+$dbname = "u931748780_bddmeal";
 
 try {
     // Crear conexión PDO

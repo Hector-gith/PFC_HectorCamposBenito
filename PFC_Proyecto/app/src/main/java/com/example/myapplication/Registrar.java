@@ -84,23 +84,30 @@ public class Registrar extends Fragment {
         btn_siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!EmailValido(Correo.getText().toString())){
-                    Correo.setError("Correo no valido");
+                String contrasena = Contrasena.getText().toString();
 
-                }else if (Nick.getText().toString().length()<4||Nick.getText().toString().length()>12) {
+                if (!EmailValido(Correo.getText().toString())) {
+                    Correo.setError("Correo no válido");
+
+                } else if (Nick.getText().toString().length() < 4 || Nick.getText().toString().length() > 12) {
                     Nick.setError("Tiene que tener entre 4 y 12 caracteres");
 
-                }else if (Contrasena.getText().toString().length()<8) {
+                } else if (contrasena.length() < 8) {
                     Contrasena.setError("Tiene que tener como mínimo 8 caracteres");
 
-                }else if (!Contrasena.getText().toString().equals(Rcontrasena.getText().toString())) {
+                } else if (!contrasena.matches(".*[A-Z].*")) {
+                    Contrasena.setError("Tiene que tener al menos una letra mayúscula");
+
+                } else if (!contrasena.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                    Contrasena.setError("Tiene que tener al menos un carácter especial");
+
+                } else if (!contrasena.equals(Rcontrasena.getText().toString())) {
                     Rcontrasena.setError("Las contraseñas deben coincidir");
 
-                }else{
-
-                    RegistrarUsr(Correo.getText().toString(), Nick.getText().toString(),Contrasena.getText().toString());
-
+                } else {
+                    RegistrarUsr(Correo.getText().toString(), Nick.getText().toString(), contrasena);
                 }
+
             }
         });
 

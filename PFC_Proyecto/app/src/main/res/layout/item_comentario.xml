@@ -17,7 +17,7 @@
             android:layout_height="51dp"
             android:layout_weight="40"
             android:padding="8dp"
-            android:text="Rodri"
+            android:text=""
             android:textSize="16sp" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="12:30"
+            android:text=""
             android:textSize="10sp" />
     </LinearLayout>
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:paddingLeft="8dp"
-            android:text="holsssssssssssssssssssssssssssssssssssssssssssssssssss"
+            android:text=""
             android:textSize="16sp" />
 
     </LinearLayout>

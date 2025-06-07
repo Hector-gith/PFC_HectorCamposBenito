@@ -12,7 +12,13 @@ public interface SubirFotoControlador {
     Call<ResponseBody> postFoto(
             @Field("ID") int ID,
             @Field("foto") String foto,
-            @Field("descripcion") String descripcion
+            @Field("descripcion") String descripcion,
+            @Field("ingredientes") String ingredientes,
+            @Field("preparacion") String preparacion,
+            @Field("restaurante") String restaurante,
+            @Field("latitud") double latitud,
+            @Field("longitud") double longitud
+
 
 
     );

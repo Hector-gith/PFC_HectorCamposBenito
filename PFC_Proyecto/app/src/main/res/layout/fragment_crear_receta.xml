@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearReceta">
+    <TextView
+        android:id="@+id/TV_pregunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Donde estas comiendo?"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTN_restaurante"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="18sp"
+        android:text="Restaurante"
+        android:background="@drawable/boton_con_borde_blanco"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTN_receta"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Receta"
+        android:textSize="18sp"
+        android:background="@drawable/boton_con_borde"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_ingredientes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Ingredientes"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/verde"
+        app:hintTextColor="@color/verde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ED_ingredientes"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:maxLength="1000"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_Preparación"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:hint="Preparación"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/verde"
+        app:hintTextColor="@color/verde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_ingredientes"
+        app:layout_constraintVertical_bias="0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ED_preparacion"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:maxLength="1000"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_restaurante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:hint="Restaurante"
+        android:gravity="top|start"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/verde"
+        app:hintTextColor="@color/verde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ED_restaurante"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textMultiLine"
+            android:maxLength="20"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_ubicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación restaurante"
+        android:backgroundTint="@color/verde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.18"
+        />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_ubicacion"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <Button
+        android:id="@+id/BTN_subir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="SUBIR"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

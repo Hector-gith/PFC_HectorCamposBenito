@@ -9,7 +9,11 @@ public class Fotos {
     private String DESCRIPCION;
     private String FECHA;
     private int COMENTARIOS;
-
+    private String RESTAURANTE;
+    private double LATITUD;
+    private double LONGITUD;
+    private String INGREDIENTES;
+    private String PREPARACION;
 
 
 
@@ -41,6 +45,31 @@ public class Fotos {
         this.DESCRIPCION = DESCRIPCION;
         this.FECHA = FECHA;
         this.COMENTARIOS = COMENTARIOS;
+    }
+
+    public Fotos(int ID, String NICK, String FOTO_PERFIL, String FOTO, String DESCRIPCION, String FECHA, int COMENTARIOS, String RESTAURANTE, double LATITUD, double LONGITUD) {
+        this.ID = ID;
+        this.NICK = NICK;
+        this.FOTO_PERFIL = FOTO_PERFIL;
+        this.FOTO = FOTO;
+        this.DESCRIPCION = DESCRIPCION;
+        this.FECHA = FECHA;
+        this.COMENTARIOS = COMENTARIOS;
+        this.RESTAURANTE = RESTAURANTE;
+        this.LATITUD = LATITUD;
+        this.LONGITUD = LONGITUD;
+    }
+
+    public Fotos(int ID, String NICK, String FOTO_PERFIL, String FOTO, String DESCRIPCION, String FECHA, int COMENTARIOS, String INGREDIENTES, String PREPARACION) {
+        this.ID = ID;
+        this.NICK = NICK;
+        this.FOTO_PERFIL = FOTO_PERFIL;
+        this.FOTO = FOTO;
+        this.DESCRIPCION = DESCRIPCION;
+        this.FECHA = FECHA;
+        this.COMENTARIOS = COMENTARIOS;
+        this.INGREDIENTES = INGREDIENTES;
+        this.PREPARACION = PREPARACION;
     }
 
     public String getFOTO_PERFIL() {
@@ -104,5 +133,44 @@ public class Fotos {
 
     public void setCOMENTARIOS(int COMENTARIOS) {
         this.COMENTARIOS = COMENTARIOS;
+    }
+    public String getRESTAURANTE() {
+        return RESTAURANTE;
+    }
+
+    public void setRESTAURANTE(String RESTAURANTE) {
+        this.RESTAURANTE = RESTAURANTE;
+    }
+
+    public double getLATITUD() {
+        return LATITUD;
+    }
+
+    public void setLATITUD(double LATITUD) {
+        this.LATITUD = LATITUD;
+    }
+
+    public double getLONGITUD() {
+        return LONGITUD;
+    }
+
+    public void setLONGITUD(double LONGITUD) {
+        this.LONGITUD = LONGITUD;
+    }
+
+    public String getINGREDIENTES() {
+        return INGREDIENTES;
+    }
+
+    public void setINGREDIENTES(String INGREDIENTES) {
+        this.INGREDIENTES = INGREDIENTES;
+    }
+
+    public String getPREPARACION() {
+        return PREPARACION;
+    }
+
+    public void setPREPARACION(String PREPARACION) {
+        this.PREPARACION = PREPARACION;
     }
 }

@@ -33,6 +33,11 @@ android {
 }
 
 dependencies {
+
+    //implementación maps y ubicación
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     val fragment_version = "1.6.1"
 
     implementation("androidx.appcompat:appcompat:1.7.0")
@@ -48,5 +53,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
     //implmentacón par desenfocar
+    implementation ("jp.wasabeef:blurry:4.0.0")
 
 }

@@ -7,19 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".SubirFoto">
 
+
     <Button
-        android:id="@+id/BTN_subir"
+        android:id="@+id/BTN_receta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
-        android:text="Subir"
+        android:text="SIGUIENTE"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintVertical_bias="0.945" />
 
     <ImageView
         android:id="@+id/IMG_foto"
@@ -44,7 +45,7 @@
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="@color/verde"
         app:hintTextColor="@color/verde"
-        app:layout_constraintBottom_toTopOf="@+id/BTN_subir"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_receta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:maxLength="160"
-            android:maxLines="5"
+            android:maxLength="100"
+            android:maxLines="3"
             android:padding="10dp"
             android:scrollbars="vertical"
             android:textColor="@color/black"

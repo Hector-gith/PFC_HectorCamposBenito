@@ -179,7 +179,7 @@ public class AjustesPerfil extends Fragment {
                     ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
                 builder.setTitle("Permiso necesario")
-                        .setMessage("Los permisos son necesarios para usar esta funcionalidad, puedes activarlos desde l")
+                        .setMessage("Los permisos son necesarios para usar esta funcionalidad.")
                         .setPositiveButton("Aceptar", null)
                         .show();
             } else {
